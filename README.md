@@ -1,7 +1,7 @@
 
 # Heltec Internet Radio mit MAX98357
 
-Ein Internet-Radio kit Heltec WIFI V3 Board und MAX98357. 
+Ein Internet-Radio mit Heltec WIFI V3 Board und MAX98357. 
 
 
 ## Bedienung   
