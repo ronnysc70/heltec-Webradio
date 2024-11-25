@@ -3,12 +3,12 @@
 
 Station defstations[DEFAULTSTATIONS] PROGMEM = {
 {"https://mdr-284290-2.sslcast.mdr.de/mdr/284290/2/mp3/high/stream.mp3","MDR Sachsen Anhalt",1},
-{"http://stream.radiobrocken.de/live/mp3-256/play.m3u","Radio Brocken",1},
-{"https://stream.radiosaw.de/saw/mp3-192","SAW",1},
+{"http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3","WDR1",1},
+{"http://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3","Deutschlandfunk",1},
 {"http://stream.89.0rtl.de/live/mp3-256/", "89,0 RTL",1},
-{"https://mdr-284330-0.sslcast.mdr.de/mdr/284330/0/mp3/high/stream.mp3","MDR Sputnik",1},
+{"http://dispatcher.rndfnk.com/br/br3/live/mp3/low","Bayern3",1},
 {"https://absolut-relax.live-sm.absolutradio.de/absolut-relax/stream/mp3", "Absolut Relax",1},
-{"https://stream.saw-musikwelt.de/saw-in-the-mix/mp3-192", "Radio SAW in the Mix",1},
+{"http://rnrw.cast.addradio.de/rnrw-0182/deinschlager/low/stream.mp3","NRW Schlagerradio",1,
 {"http://mdr-284331-2.sslcast.mdr.de/mdr/284331/2/mp3/high/stream.mp3","MDR Sputnik in the mix",1},
 {"http://stream.89.0rtl.de/mix/mp3-256/play.m3u", "89,0 RTL in the Mix",1}, 
 {"http://stream.sunshine-live.de/live/mp3-192","Sunshine Live",1}
