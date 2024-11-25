@@ -11,8 +11,8 @@ nach dem Starten sucht das Board das eingestellte WLAN was in "credentials.h" hi
 
 <ul>
 <li>mit:</li>
-  <ul>- Breadboard MAX98357</ul>
-  <ul>- Breadboard KY 040</ul>
+  <ul>- breakout Board MAX98357</ul>
+  <ul>- breakout Board KY-040</ul>
 </ul>
 <ul>
 <li>benutzte Libaries:</li>
