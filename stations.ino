@@ -8,7 +8,7 @@ Station defstations[DEFAULTSTATIONS] PROGMEM = {
 {"http://stream.89.0rtl.de/live/mp3-256/", "89,0 RTL",1},
 {"http://dispatcher.rndfnk.com/br/br3/live/mp3/low","Bayern3",1},
 {"https://absolut-relax.live-sm.absolutradio.de/absolut-relax/stream/mp3", "Absolut Relax",1},
-{"http://rnrw.cast.addradio.de/rnrw-0182/deinschlager/low/stream.mp3","NRW Schlagerradio",1,
+{"http://rnrw.cast.addradio.de/rnrw-0182/deinschlager/low/stream.mp3","NRW Schlagerradio",1},
 {"http://mdr-284331-2.sslcast.mdr.de/mdr/284331/2/mp3/high/stream.mp3","MDR Sputnik in the mix",1},
 {"http://stream.89.0rtl.de/mix/mp3-256/play.m3u", "89,0 RTL in the Mix",1}, 
 {"http://stream.sunshine-live.de/live/mp3-192","Sunshine Live",1}
