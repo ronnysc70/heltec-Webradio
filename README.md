@@ -1,7 +1,9 @@
 
 # Heltec Internet Radio mit MAX98357
 
-Ein Internet-Radio mit Heltec WIFI V3 Board und MAX98357. 
+Ein Internet-Radio mit Heltec WIFI V3 Board und MAX98357. <br>
+Basis ist: <a href="https://www.az-delivery.de/blogs/azdelivery-blog-fur-arduino-und-raspberry-pi/internetradio-mit-esp32-und-max-98357a">azdelivery Internetradio</a>
+
 
 ## Aufbau
 nach dem Schaltplan unter /hardware/verkabelung.png die Boards verbinden. An das Audioboard einen kleine Lautsprecher anschließen und das Heltec Board mit +5V versorgen, entweder über die USB-C Buchse oder den 5V-Anschlüssen.
