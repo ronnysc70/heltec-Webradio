@@ -8,6 +8,10 @@ Basis ist: <a href="https://www.az-delivery.de/blogs/azdelivery-blog-fur-arduino
 ## Aufbau
 nach dem Schaltplan unter /hardware/verkabelung.png die Boards verbinden. An das Audioboard einen kleine Lautsprecher anschließen und das Heltec Board mit +5V versorgen, entweder über die USB-C Buchse oder den 5V-Anschlüssen.
 
+## Software
+die entsprechenden Libraries über den Library-Manager von Arduino installieren, dabei nicht vergessen die ESP Core im Boardverwalter einzurichten. Die Audio-Library muss per Hand eingebunden werden.
+Siehe hierzu: <a href="https://draeger-it.blog/arduino-ide-einbinden-einer-bibliothek/">https://draeger-it.blog/arduino-ide-einbinden-einer-bibliothek/</a>. Danahc nicht vergessen in der Datei "credentials.h" SSID und Passwort des eigenen WLAN einzutragen. Zum Compilieren im Boardverwalter "Heltec Wifi Kit 32(V3)" wählen.
+
 ## Bedienung   
 nach dem Starten sucht das Heltec-Board das eingestellte WLAN was in "credentials.h" hinterlegt ist. Bei erfolgreichen Verbinden zum WLAN wird der zuletzt aufgerufene Sender kontaktiert und gestreamt. Wenn der Sender gefunden wurde und funktioniert wird vor den Sendername ein Lautsprecher-Symbol eingeblendet. Die Lautstärke kann im Hauptbildschirm mit dem Encoder verändert werden. Zum Auswählen eines neuen Senders den Encoder einmal drücken, den neuen Sender wählen und durch Drücken bestätigen. Durch Doppelclick wird die vergebene IP-Adresse angezeigt. Mit dieser können per Webinterface Radiosender geändert, hinzugefügt und die Reihenfolge verändert werden. Neue Software kann als binary-Datei per WiFi übertragen werden. Dazu "IP-Adresse"/update eingeben und den Angaben folgen. Langes Drücken über eine Sekunde beendet den Stream und die Uhrzeit und Datum werden angezeigt.
 
