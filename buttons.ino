@@ -46,9 +46,10 @@ void pressTwice()           //Doppelklick -> Anzeige IP-Adresse
   {
     btnMode = true;
     u8g2.clearBuffer();
-    u8g2.setCursor(0,20);
+    u8g2.setFont(u8g2_font_courB10_tf);
+    u8g2.setCursor(0,12);
     u8g2.print("IP-Adresse: ");
-    u8g2.setCursor(0,40);
+    u8g2.setCursor(0,32);
     u8g2.print(WiFi.localIP().toString().c_str());
     u8g2.sendBuffer();
     lastchange = millis();
@@ -61,6 +62,7 @@ void onPressLong()          //lange Drücken -> Standby
    {
       audio.stopSong();
       u8g2.clearBuffer();       //Heltec
+      u8g2.setFont(u8g2_font_courB10_tf);
       u8g2.setCursor(20,30);
       u8g2.print("Standby");
       u8g2.sendBuffer();

@@ -36,7 +36,7 @@ int setup_wifi()
 void wifi_loop()
 {
   
-    if ((millis() - delayTimeRefresh) > 2000)       //aller 2 Sekunden Überprüfung WLAN und Internet Verbindung
+    if ((millis() - delayTimeRefresh) > 10000)       //aller 10 Sekunden Überprüfung WLAN und Internet Verbindung
     {
       int retry = 0;
       delayTimeRefresh = millis();
@@ -84,7 +84,7 @@ void wifi_loop()
         }
         else
         {
-          Serial.println("Internet erreichbar");
+          //Serial.println("Internet erreichbar");
           if (internetLost)
           {
             internetLost = false;

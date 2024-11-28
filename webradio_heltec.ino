@@ -1,7 +1,7 @@
 /*
  * Heltec V3 Webradio mit MAX98357
  * Bedienung nur mit Encoder: Einzel-Click= Senderwahl, Doppelklick=IP-Adresse, langer Click=Standby
- *
+ * untere Zeile jetzt Songtitel
  */
 
 
@@ -74,6 +74,21 @@ typedef struct {
 
 //gloabal variables
 Station stationlist[STATIONS];
+//variables Scolltext
+int16_t offset;        // current offset for the scrolling text
+u8g2_uint_t width;      // pixel width of the scrolling text (must be lesser than 128 unless U8G2_16BIT is defined
+//const char *songText;
+String songText;
+bool isSongText = false;
+const uint8_t tile_area_x_pos = 2;  // Update area left position (in tiles)
+const uint8_t tile_area_y_pos = 4;  // Update area upper position (distance from top in tiles)
+const uint8_t tile_area_width = 16;
+const uint8_t tile_area_height = 3; // this will allow cour18 chars to fit into the area
+
+const u8g2_uint_t pixel_area_x_pos = tile_area_x_pos*8;
+const u8g2_uint_t pixel_area_y_pos = tile_area_y_pos*8;
+const u8g2_uint_t pixel_area_width = tile_area_width*8;
+const u8g2_uint_t pixel_area_height = tile_area_height*8;
 
 //instance of prefernces
 Preferences pref;
@@ -218,6 +233,7 @@ void setup()
   }
   delayTimeRefresh = millis();
   httpsClient.setInsecure();
+  
 }
 
 void loop() 
@@ -228,6 +244,7 @@ void loop()
     {
       audio_loop();
       rotary_loop();
+      display_loop();
       if (!(btnStation))
       {
         wifi_loop();

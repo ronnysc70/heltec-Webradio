@@ -4,6 +4,7 @@ void startUrl()
 {
   audio.connecttohost(stationlist[actStation].url);
   streamReady = false;
+  isSongText = false;
 }
 
 // to be called in 'setup()'
@@ -31,4 +32,16 @@ void audio_info(const char *info)
       streamReady = true;
       showStation();
     }
+
+}
+void audio_showstreamtitle(const char *info)
+{
+  songText = String(info);
+  Serial.print("Titel: ");
+  Serial.println(songText);
+  width = songText.length()+1;
+  width = width * 8;              //Textlänge mit 8 multiplizieren da 8 Pixel ein Zeichen breit ist
+  offset=width+pixel_area_width;  //Breite der Zeile plus Länge des Textes
+  isSongText = true;
+  showStation();
 }

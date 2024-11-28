@@ -31,29 +31,7 @@ void rotary_loop()
       {
         
         u8g2.clearBuffer();             //Heltec
-        if (!(streamReady))
-        {
-          u8g2.setCursor(0,20);
-        }
-        else
-        {
-          u8g2.setDrawColor(1);
-          u8g2.setFont(u8g2_font_siji_t_6x10);
-          u8g2.drawGlyph(0,20, 0xe05d);
-          u8g2.setFont(u8g2_font_courB10_tf);
-          u8g2.setCursor(15,20);
-        }
-        String name = String(stationlist[curStation].name);
-        if (name.length() < 12)
-        {
-          u8g2.print(name);
-        }
-        else 
-        {
-          uint8_t p = name.lastIndexOf(" ",13); //if name does not fit, split line on space
-          u8g2.print(name.substring(0,p)); //nur oberer Teil wird ausgegeben
-        }
-        u8g2.setCursor(0,40);
+        u8g2.setCursor(0,30);
         sprintf(ausgabe,"Volume: %d", (v*2));
         u8g2.print(ausgabe);
         u8g2.print("%");

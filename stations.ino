@@ -4,7 +4,7 @@
 Station defstations[DEFAULTSTATIONS] PROGMEM = {
 {"https://mdr-284290-2.sslcast.mdr.de/mdr/284290/2/mp3/high/stream.mp3","MDR Sachsen Anhalt",1},
 {"http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3","WDR1",1},
-{"http://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3","Deutschlandfunk",1},
+{"http://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3","Deutschland- funk",1},
 {"http://stream.89.0rtl.de/live/mp3-256/", "89,0 RTL",1},
 {"http://dispatcher.rndfnk.com/br/br3/live/mp3/low","Bayern3",1},
 {"https://absolut-relax.live-sm.absolutradio.de/absolut-relax/stream/mp3", "Absolut Relax",1},
