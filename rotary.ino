@@ -31,10 +31,25 @@ void rotary_loop()
       {
         
         u8g2.clearBuffer();             //Heltec
-        u8g2.setCursor(0,30);
+        u8g2.setCursor(10,12);
+        u8g2.print("Lautstärke:");
+        // Horizontal bar width frame
+        int xFrame = 10;
+        int yFrame = 22;
+        int heightFrame = 8;
+        int widthFrame = 101;
+        u8g2.drawFrame(xFrame, yFrame, widthFrame, heightFrame);
+
+        int xBox = 11;
+        int yBox = 22;
+        int heightBox = 8;
+        int widthBox = 100;
+        u8g2.drawBox(xBox, yBox, (v*2), heightBox);
+        /*
         sprintf(ausgabe,"Volume: %d", (v*2));
         u8g2.print(ausgabe);
         u8g2.print("%");
+        */        
         u8g2.sendBuffer();
         
         audio.setVolume(v); // default 0...21
