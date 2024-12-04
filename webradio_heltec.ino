@@ -44,8 +44,7 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ 21, /* clock=*/ 18
 
 Audio audio;
 
-//WiFI Einstellungen in der credentials.h
-#include <credentials.h>
+//WiFI Einstellungen
 #define MAXWLANTRY 10  // try to connect with stored credentials MAXWLANTRY times
 int tryCount = 0;
 bool connected;
