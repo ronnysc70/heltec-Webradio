@@ -20,8 +20,31 @@ void webserver_loop() {
 //handle root request
 void handleRoot() {
 
-    //if connected send the main page
+  if (connected) {//if connected send the main page
     server.send(200,"text/html",MAIN_page);
+  }
+  else {
+    //if not connected we use the config page without ajax
+    //we get parameters as arguments in the HTML-request
+    Serial.println("Got config:");
+    uint8_t a = server.args();
+    Serial.print(a); Serial.println(" Arguments");
+    for (uint8_t i = 0; i<a; i++)  Serial.println(server.arg(i));
+    if (server.hasArg("conf_ssid")) {
+      pref.putString("ssid",server.arg("conf_ssid")); //save SSID in the preferences
+      Serial.println(server.arg("conf_ssid"));
+    }
+    if (server.hasArg("conf_pkey")) {
+      pref.putString("pkey",server.arg("conf_pkey")); // save PKEY in the preferences
+      Serial.println(server.arg("conf_pkey"));
+    }
+    if (server.hasArg("reset")) {
+      server.send(300,"text/plain","gespeichert, Neustart");
+      Serial.println("Restart!"); //initiate a restart
+      ESP.restart();
+    }
+    server.send(200,"text/html",CONFIG_page); //send the config page to the client
+  }
  
 
 

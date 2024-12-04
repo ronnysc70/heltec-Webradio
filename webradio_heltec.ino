@@ -48,6 +48,7 @@ Audio audio;
 #include <credentials.h>
 #define MAXWLANTRY 10  // try to connect with stored credentials MAXWLANTRY times
 int tryCount = 0;
+bool connected;
 
 
 //library for rotary encoder
@@ -74,10 +75,11 @@ typedef struct {
 
 //gloabal variables
 Station stationlist[STATIONS];
+String ssid = "";
+String pkey = "";
 //variables Scolltext
 int16_t offset;        // current offset for the scrolling text
 u8g2_uint_t width;      // pixel width of the scrolling text (must be lesser than 128 unless U8G2_16BIT is defined
-//const char *songText;
 String songText;
 bool isSongText = false;
 const uint8_t tile_area_x_pos = 2;  // Update area left position (in tiles)
@@ -173,6 +175,8 @@ void setup()
 	if (curStation >= STATIONS) curStation = 0; //check to avoid invalid station number
   if (pref.isKey("volume")) curVol = pref.getUShort("volume");      //EEPROM volume lesen
   if (pref.isKey("standby")) btnStandby = pref.getBool("standby");      //EEPROM Standby lesen
+  if (pref.isKey("ssid")) ssid = pref.getString("ssid");              //EEPROM SSID und pkey
+  if (pref.isKey("pkey")) pkey = pref.getString("pkey");
   Serial.printf("Gespeicherte Lautstärke %i\n",curVol);
   Serial.printf("Gespeicherte Station %i von %i\n",curStation,STATIONS);
   
@@ -192,55 +196,67 @@ void setup()
   u8g2.enableUTF8Print();
   u8g2.setFont(u8g2_font_courB10_tf);
   u8g2.clearBuffer();
-
+  
   //Setup Timeserver
   // ESP32 seems to be a little more complex:
   configTime(0, 0, NTP_SERVER);  // 0, 0 because we will use TZ in the next line
   setenv("TZ", MY_TZ, 1);            // Set environment variable with your time zone
   tzset();
   
-  //init Wifi
-  while (!setup_wifi()) 
+    //init Wifi
+  WiFi.onEvent(stationConnected, WiFiEvent_t::ARDUINO_EVENT_WIFI_AP_STACONNECTED);
+  connected = initWiFi(ssid, pkey);
+  if (!(connected))
   {
     Serial.println("Cannot connect :(");
     u8g2.clearBuffer();                   //Heltec
     u8g2.setCursor(0,20);
-    u8g2.print("WLAN nicht da...");
+    u8g2.print("kein WLAN");
+    u8g2.setCursor(0,40);
+    u8g2.print("starte AP");
     u8g2.sendBuffer();
-    
-    delay(3000);
-    ESP.restart();
+    delay(2000);
+    u8g2.clearBuffer();
+    u8g2.setCursor(0,15);
+    u8g2.print("mit AP:");
+    u8g2.setCursor(0,30);
+    u8g2.print("'webradioconf'");
+    u8g2.setCursor(0,45);
+    u8g2.print("verbinden");
+    u8g2.sendBuffer();
   }
+  else
+  {
   //init Server
-  setup_senderList(); //load station list from preferences
-	setup_webserver();
+    setup_senderList(); //load station list from preferences
+	  if (!(btnStandby))
+    {
+    //show on display and start streaming setEncoderValue(curStation);
+      startUrl();
+      showStation();  
+    }
+    else
+    {
+    //lcd.clear();
+      showStandby();
+    }
+  }
+  setup_webserver();
   Serial.println("Webserver läuft");
   //init OTA
   ElegantOTA.begin(&server);
   ElegantOTA.onStart(onOTAStart);
   ElegantOTA.onEnd(onOTAEnd);
-
-  if (!(btnStandby))
-  {
-    //show on display and start streaming setEncoderValue(curStation);
-    startUrl();
-    showStation();  
-  }
-  else
-  {
-    //lcd.clear();
-    showStandby();
-  }
+  
   delayTimeRefresh = millis();
   httpsClient.setInsecure();
-  
 }
 
 void loop() 
 {
-  if (!(updateIsRunning))
+  if (!(updateIsRunning) && (connected))
   {
-    if (!(btnStandby))
+    if (!(btnStandby) )
     {
       audio_loop();
       rotary_loop();

@@ -1,6 +1,7 @@
 //init WiFi Verbindung
-int setup_wifi()
+boolean initWiFi(String ssid, String pkey)
 {       
+  connected = false;
   Serial.println("Connecting to WiFi");
   WiFi.disconnect();
   WiFi.softAPdisconnect(true);
@@ -12,7 +13,7 @@ int setup_wifi()
     u8g2.print("suche WLAN...");
     u8g2.sendBuffer();
     WiFi.mode(WIFI_STA);
-    WiFi.begin(SSID, PSK);
+    WiFi.begin(ssid.c_str(),pkey.c_str());
      while ((WiFi.status() != WL_CONNECTED) && (tryCount<MAXWLANTRY)) 
      {
        Serial.print(".");
@@ -27,9 +28,15 @@ int setup_wifi()
   if (tryCount < MAXWLANTRY) {
     Serial.print(F("IP-Adresse per DHCP ist "));
     Serial.println(WiFi.localIP());
-    return(true);   // when connection ok, stop here and return positive
+    connected = true;
   }
-  return(false);
+  //we start an access point to allow configuration
+  if (!connected) {
+     Serial.println("Keine Verbindung! \nStarte Access-Point.");
+     WiFi.mode(WIFI_AP);
+     WiFi.softAP("webradioconf","");
+  }
+  return connected;
 }
 
 
@@ -102,4 +109,16 @@ void wifi_loop()
         httpsClient.stop();
       }
     }
+}
+
+void stationConnected(WiFiEvent_t event, WiFiEventInfo_t info)
+{
+        u8g2.clearBuffer();                   //Heltec
+        u8g2.setCursor(0,15);
+        u8g2.print("im Browser");
+        u8g2.setCursor(0,30);
+        u8g2.print("192.168.4.1");
+        u8g2.setCursor(0,45);
+        u8g2.print("eingeben");
+        u8g2.sendBuffer();
 }

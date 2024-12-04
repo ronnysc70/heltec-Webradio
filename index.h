@@ -206,3 +206,62 @@ label {
 </body>
 </html>
 )=====";
+
+//*****************************************************************************************************************
+const char CONFIG_page[] PROGMEM = R"=====(
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+<meta name='viewport' content='width=320' />
+<style>
+body {
+  width:300px;
+  font-family:arial;
+}
+
+button {
+  width:110px;
+  background-color:silver;
+  border-radius:10px;
+}
+
+.theme {
+  background-color:cadetblue;
+  padding:10px;
+  border-radius: 10px;
+  border: 2px solid silver;
+}
+
+.confpane {
+  width:280px;
+  height:75px;
+}
+
+
+.txtinput {
+  position:absolute;
+  left:90px;
+  width:200px;
+}
+
+.label {
+  color:white;
+  font-family:arial;
+}
+
+</style>
+</head>
+<body>
+<h1 style="text-align:center;">Internet Radio</h1>
+<form>
+<div class="confpane theme">
+<div><span class="label">SSID:</span> <input name="conf_ssid" class="txtinput"/></div>
+<div style="padding-top:10px;"><span class="label">PKEY:</span> 
+<input name="conf_pkey" class="txtinput" type="password"/></div>
+<div style="padding-top:10px;text-align:center">
+<button type="submit" name="reset">Neustart</button></div>
+</div>
+</body>
+</html>
+)=====";
